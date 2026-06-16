@@ -2,7 +2,7 @@
 <html lang="pt-BR" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <!-- ═══════════════════════════════════════════════════════════
      TITLE & DESCRIPTION — otimizado para Brasil e mundo
@@ -456,8 +456,8 @@
   }
 
   .nav-logo { display: flex; align-items: center; text-decoration: none; }
-  .nav-logo img { height: 44px; width: auto; display: block; filter: drop-shadow(0 0 12px rgba(245,166,35,0.3)); transition: filter 0.3s; }
-  .nav-logo:hover img { filter: drop-shadow(0 0 20px rgba(245,166,35,0.55)); }
+  .nav-logo img { height: 54px; width: auto; display: block; filter: drop-shadow(0 0 16px rgba(245,166,35,0.4)); transition: filter 0.3s; }
+  .nav-logo:hover img { filter: drop-shadow(0 0 28px rgba(245,166,35,0.7)); }
 
   .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
   .nav-links a { color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
@@ -471,8 +471,19 @@
   }
   .nav-cta:hover { background: var(--gold2); box-shadow: 0 0 24px var(--gold-glow); transform: translateY(-1px); }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 6px; cursor: pointer;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
 
   /* ── HERO ── */
   #hero {
@@ -763,7 +774,7 @@
     background: rgba(10,10,10,0.92); backdrop-filter: blur(10px);
     border: 1px solid rgba(245,166,35,0.3); border-radius: 12px; padding: 16px 20px;
   }
-  .footer-brand .nav-logo img { height: 52px; }
+  .footer-brand .nav-logo img { height: 64px; }
   .sobre-badge-num { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 900; color: var(--gold); letter-spacing: -0.04em; }
   .sobre-badge-text { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
@@ -868,19 +879,14 @@
     /* NAV */
     nav {
       padding: 0 5%;
-      height: 64px;
+      height: 68px;
     }
-    .nav-logo img { height: 36px; }
+    .nav-logo img { height: 48px; }
     .nav-links { display: none; }
     .nav-cta-desktop { display: none; }
     .hamburger {
-      display: flex;
-      padding: 10px;
-      margin-right: -10px;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      display: flex !important;
     }
-    .hamburger span { width: 26px; height: 2.5px; }
 
     /* SECTIONS */
     section { padding: 72px 5%; }
@@ -1027,8 +1033,8 @@
     .section-title { font-size: 28px; }
     .hero-stats { flex-direction: column; align-items: center; gap: 16px; }
     .stat-num { font-size: 28px; }
-    nav { height: 60px; }
-    .nav-logo img { height: 32px; }
+    nav { height: 64px; }
+    .nav-logo img { height: 42px; }
   }
 
   /* ── MOBILE MENU ── */
