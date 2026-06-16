@@ -403,6 +403,10 @@
 <link rel="icon" type="image/png" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1781641114/ChatGPT_Image_16_de_jun._de_2026_16_18_24_skbudu.png">
 <link rel="apple-touch-icon" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1781641114/ChatGPT_Image_16_de_jun._de_2026_16_18_24_skbudu.png">
 <link rel="shortcut icon" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1781641114/ChatGPT_Image_16_de_jun._de_2026_16_18_24_skbudu.png">
+<!-- PWA MANIFEST -->
+<link rel="manifest" href="/manifest.json">
+<!-- SITEMAP hint para crawlers -->
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -841,41 +845,227 @@
   }
   .social-link:hover { background: var(--gold-dim); border-color: rgba(245,166,35,0.3); color: var(--gold); transform: translateY(-2px); }
 
-  /* ── RESPONSIVE ── */
+  /* ── RESPONSIVE — TABLET ── */
   @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    nav { padding: 0 4%; }
+    .nav-links { gap: 22px; }
+    .nav-links a { font-size: 13px; }
+
+    section { padding: 80px 4%; }
+
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .resultados-top { grid-template-columns: 1fr; gap: 48px; }
     .processo-strip { grid-template-columns: repeat(2, 1fr); gap: 40px; }
     .processo-strip::before { display: none; }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-    .hero-shape { width: 300px; height: 300px; opacity: 0.4; right: 2%; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .hero-shape { width: 280px; height: 280px; opacity: 0.35; right: 2%; }
+    .sobre-grid { gap: 48px; }
   }
 
+  /* ── RESPONSIVE — MOBILE ── */
   @media (max-width: 768px) {
-    .nav-links, .nav-cta-desktop { display: none; }
-    .hamburger { display: flex; }
-    .services-grid { grid-template-columns: 1fr; }
-    .dif-grid { grid-template-columns: 1fr; }
-    .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
-    .footer-top { grid-template-columns: 1fr; gap: 36px; }
-    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .hero-stats { gap: 20px; flex-wrap: wrap; }
+
+    /* NAV */
+    nav {
+      padding: 0 5%;
+      height: 64px;
+    }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: none; }
+    .nav-cta-desktop { display: none; }
+    .hamburger {
+      display: flex;
+      padding: 10px;
+      margin-right: -10px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hamburger span { width: 26px; height: 2.5px; }
+
+    /* SECTIONS */
+    section { padding: 72px 5%; }
+
+    /* HERO */
+    #hero {
+      padding: 100px 5% 60px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-content { max-width: 100%; }
+    .hero-h1 { font-size: clamp(36px, 9vw, 52px); letter-spacing: -0.03em; }
+    .hero-sub { font-size: 16px; margin-left: auto; margin-right: auto; }
+    .hero-btns {
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-primary, .btn-outline {
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+      justify-content: center;
+      padding: 16px 24px;
+      font-size: 15px;
+    }
+    .hero-stats {
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      padding-top: 32px;
+    }
+    .hero-stats > div { text-align: center; min-width: 80px; }
+    .stat-num { font-size: 30px; }
     .hero-shape { display: none; }
-    .numeros-grid { grid-template-columns: 1fr; }
-    .processo-strip { grid-template-columns: 1fr; }
+    .hero-badge { margin-left: auto; margin-right: auto; }
+    .orb-1 { width: 300px; height: 300px; }
+    .orb-2 { width: 200px; height: 200px; }
+
+    /* SECTION HEADERS */
+    .section-sub { font-size: 15px; margin-bottom: 40px; }
+
+    /* SERVICES */
+    .services-grid { grid-template-columns: 1fr; gap: 14px; }
+    .service-card { padding: 28px 24px; }
+
+    /* RESULTADOS */
+    .resultados-top { grid-template-columns: 1fr; gap: 40px; }
+    .numeros-grid { grid-template-columns: 1fr 1fr; }
+    .numero-item { padding: 28px 20px; }
+    .numero-val { font-size: 36px; }
+    .processo-strip { grid-template-columns: 1fr; gap: 32px; }
     .processo-strip::before { display: none; }
+    .resultados-copy .btn-primary {
+      width: 100%; max-width: 320px;
+      text-align: center; justify-content: center;
+    }
+
+    /* DIFERENCIAIS */
+    .dif-grid { grid-template-columns: 1fr; }
+    .dif-item { padding: 32px 24px; }
     .dif-item[style*="grid-column"] { grid-column: span 1 !important; }
+
+    /* SOBRE */
+    .sobre-grid { grid-template-columns: 1fr; gap: 36px; }
+    .sobre-img { aspect-ratio: 3/2; }
+
+    /* CTA */
+    #cta { padding: 80px 5%; }
+    .cta-title { font-size: clamp(30px, 8vw, 48px); }
+    .cta-sub { font-size: 15px; }
+    .btn-whatsapp {
+      width: 100%; max-width: 320px;
+      justify-content: center;
+      padding: 18px 24px;
+      font-size: 15px;
+    }
+
+    /* FOOTER */
+    .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    .footer-bottom {
+      flex-direction: column; gap: 12px; text-align: center;
+    }
+    .footer-bottom p { font-size: 12px; }
+    footer { padding: 48px 5% 28px; }
+
+    /* CONTACT FORM */
+    .form-row { grid-template-columns: 1fr !important; }
+
+    /* ── TODOS OS BOTÕES CENTRALIZADOS NO MOBILE ── */
+
+    /* Seções em geral: textos e labels alinhados ao centro */
+    .section-label,
+    .section-title,
+    .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* Qualquer btn-primary fora do hero que fique solto */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Resultados: centraliza texto e botão */
+    .resultados-copy {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .resultados-copy h3 { text-align: center; }
+    .resultados-copy p { text-align: center; max-width: 100%; }
+
+    /* Sobre: centraliza texto */
+    .sobre-text { text-align: center; }
+    .sobre-tags { justify-content: center; }
+
+    /* CTA: já centralizado mas reforça */
+    #cta { text-align: center; }
+    #cta .btn-whatsapp { margin-left: auto; margin-right: auto; }
+
+    /* Contato: centraliza info lateral */
+    .contato-info { text-align: center; }
+    .contato-item { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    .contato-grid { gap: 40px; }
+
+    /* Submit button */
+    .btn-submit { width: 100%; }
+
+    /* Form success button */
+    .form-success .btn-primary { margin: 24px auto 0; }
   }
 
+  /* ── RESPONSIVE — SMALL MOBILE ── */
+  @media (max-width: 400px) {
+    .numeros-grid { grid-template-columns: 1fr; }
+    .hero-h1 { font-size: 32px; }
+    .section-title { font-size: 28px; }
+    .hero-stats { flex-direction: column; align-items: center; gap: 16px; }
+    .stat-num { font-size: 28px; }
+    nav { height: 60px; }
+    .nav-logo img { height: 32px; }
+  }
+
+  /* ── MOBILE MENU ── */
   .mobile-menu {
-    display: none; position: fixed; inset: 0; z-index: 99;
-    background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
-    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(10,10,10,0.98); backdrop-filter: blur(24px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 80px 32px 40px;
   }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--white); text-decoration: none; font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; }
-  .mobile-menu a:hover { color: var(--gold); }
-  .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 28px; cursor: pointer; color: var(--white); background: none; border: none; }
+  .mobile-menu a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800;
+    padding: 12px 0; width: 100%; text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover, .mobile-menu a:active { color: var(--gold); }
+  .mobile-menu-cta {
+    margin-top: 24px !important; border-bottom: none !important;
+    background: var(--gold); color: var(--black) !important;
+    border-radius: 10px; padding: 16px 32px !important;
+    font-size: 16px !important; width: auto !important;
+    box-shadow: 0 0 30px rgba(245,166,35,0.3);
+  }
+  .mobile-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-close:hover { background: rgba(245,166,35,0.2); }
 
   .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s, transform 0.7s; }
   .reveal-left.visible { opacity: 1; transform: translateX(0); }
@@ -903,13 +1093,13 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <button class="mobile-close" onclick="toggleMenu()" aria-label="Fechar menu">✕</button>
   <a href="#servicos" onclick="toggleMenu()">Serviços</a>
   <a href="#resultados" onclick="toggleMenu()">Resultados</a>
   <a href="#diferenciais" onclick="toggleMenu()">Diferenciais</a>
   <a href="#sobre" onclick="toggleMenu()">Sobre</a>
   <a href="#contato" onclick="toggleMenu()">Contato</a>
-  <a href="https://wa.me/5567981082158" target="_blank" style="color:var(--gold)">Falar no WhatsApp</a>
+  <a href="https://wa.me/5567981082158" target="_blank" class="mobile-menu-cta">Falar no WhatsApp</a>
 </div>
 
 <!-- HERO -->
