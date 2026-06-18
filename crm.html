@@ -251,18 +251,98 @@ tr:hover .abtns{opacity:1}
 .empi svg{width:22px;height:22px;stroke:var(--gray);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .empt{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800}
 .emps{font-size:13px;color:var(--gray);max-width:260px;line-height:1.6}
+/* ══ MOBILE BOTTOM NAV ══ */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg2);border-top:1px solid var(--border2);padding:6px 0 max(6px,env(safe-area-inset-bottom));justify-content:space-around;align-items:center}
+.mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;cursor:pointer;color:var(--gray);border-radius:10px;transition:all .15s;min-width:52px;position:relative}
+.mob-nav-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mob-nav-item span{font-size:10px;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.mob-nav-item.on{color:var(--gold)}
+.mob-nav-item .dot{position:absolute;top:4px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--bg2);display:none}
+.mob-nav-item .dot.on{display:block}
+/* MORE MENU */
+.mob-more{display:none;position:fixed;bottom:68px;left:0;right:0;z-index:199;background:var(--bg2);border-top:1px solid var(--border2);padding:12px 16px;flex-direction:column;gap:4px;max-height:70vh;overflow-y:auto;animation:moreIn .2s ease}
+@keyframes moreIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.mob-more.on{display:flex}
+.mob-more-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;cursor:pointer;color:var(--gray);font-size:14px;font-weight:500;transition:all .15s}
+.mob-more-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.mob-more-item:hover,.mob-more-item.on{background:var(--gold-dim);color:var(--gold)}
+.mob-more-ovl{display:none;position:fixed;inset:0;z-index:198}
+.mob-more-ovl.on{display:block}
+
 @media(max-width:768px){
-  .sb{display:none;position:fixed;inset:0;width:100vw;z-index:100;padding-top:56px}
-  .sb.on{display:flex}.hbg{display:flex}.ca{padding:14px}
-  .mg{grid-template-columns:1fr 1fr;gap:10px}.met-v{font-size:22px}
-  .fr2,.fr3{grid-template-columns:1fr}.dp{width:100vw}
-  .kw{height:calc(100vh - 140px)}.rg2{grid-template-columns:1fr}
-  .pg,.svc-grid{grid-template-columns:1fr}.ttb{gap:7px}
-  .sb-box{max-width:100%;min-width:unset}
+  /* LAYOUT */
+  .sb{display:none}
+  .hbg{display:flex}
+  .ca{padding:12px 14px 80px}
+  .layout{flex-direction:column}
+  .mob-nav{display:flex}
+
+  /* TOPBAR */
+  .tb{padding:0 14px}
+  .uname,.urole{display:none}
+  .uchip{padding:5px}
+  .btn-gh.btn-sm span,.btn-gh.btn-sm svg+*{display:none}
+  .tb-div{display:none}
+  .tb-sec{font-size:13px}
+
+  /* GRIDS */
+  .mg{grid-template-columns:1fr 1fr;gap:10px}
+  .met-v{font-size:22px;letter-spacing:-.03em}
+  .met-l{font-size:11px}
+  .met-ic{width:30px;height:30px}
+  .met-ic svg{width:14px;height:14px}
+  .fr2,.fr3{grid-template-columns:1fr}
+  .rg2{grid-template-columns:1fr}
+  .pg,.svc-grid{grid-template-columns:1fr}
   #dash-grids{grid-template-columns:1fr!important}
-  #dash-bottom{grid-template-columns:1fr 1fr!important}
+  #dash-bottom{grid-template-columns:1fr!important}
+
+  /* TABLE */
+  .ttb{gap:6px;padding:10px 12px}
+  .sb-box{max-width:100%;min-width:0;flex:1}
+  table{font-size:12px}
+  th{font-size:9px;padding:8px 10px}
+  td{padding:9px 10px}
+
+  /* KANBAN — horizontal scroll */
+  .kw{height:calc(100vh - 200px);padding-bottom:4px}
+
+  /* DETAIL PANEL — full screen */
+  .dp{width:100vw;border-left:none}
+
+  /* MODAL */
+  .modal{border-radius:14px}
+  .mh{padding:18px 18px 0}
+  .mb{padding:0 18px 18px}
+
+  /* CARDS */
+  .card{padding:14px}
+  .tw{border-radius:12px}
+
+  /* PAGE HEADER */
+  .ph{margin-bottom:14px}
+  .ptitle{font-size:19px}
+  .pacts .btn span{display:none}
+  .pacts .btn svg{margin:0}
+  .pacts .btn{padding:8px 10px}
+
+  /* PEOPLE CARDS */
+  .pc{padding:16px}
+  .pcav{width:38px;height:38px;font-size:16px}
+
+  /* SVC CARDS */
+  .svc-card{padding:16px}
+
+  /* INV STATS */
+  #inv-stats{grid-template-columns:1fr!important}
+
+  /* USERS TABLE — hide some cols */
+  .users-hide{display:none}
 }
-@media(max-width:480px){#dash-bottom{grid-template-columns:1fr!important}}
+@media(max-width:400px){
+  .mg{grid-template-columns:1fr}
+  .met{padding:14px}
+}
 </style>
 </head>
 <body>
@@ -486,27 +566,84 @@ tr:hover .abtns{opacity:1}
     <div class="mf"><button class="btn btn-gh" onclick="closeM('m-reset')">Cancelar</button><button class="btn btn-g" onclick="doResetPass()">Redefinir Senha</button></div>
   </div></div>
 </div>
+<!-- MOBILE BOTTOM NAV -->
+<div class="mob-more-ovl" id="mob-ovl" onclick="closeMobMore()"></div>
+<div class="mob-more" id="mob-more">
+  <div class="mob-more-item" id="mm-pipeline" onclick="showV('pipeline');closeMobMore()"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline</div>
+  <div class="mob-more-item" id="mm-servicos" onclick="showV('servicos');closeMobMore()"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Serviços</div>
+  <div class="mob-more-item" id="mm-relatorios" onclick="showV('relatorios');closeMobMore()"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios</div>
+  <div class="mob-more-item" id="mm-equipe" onclick="showV('equipe');closeMobMore()"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Equipe</div>
+  <div class="mob-more-item" id="mm-investidores" onclick="showV('investidores');closeMobMore()"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>Investidores</div>
+  <div class="mob-more-item" id="mm-vendedores" onclick="showV('vendedores');closeMobMore()"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Vendedores</div>
+  <div class="mob-more-item" id="mm-usuarios" onclick="showV('usuarios');closeMobMore()"><svg viewBox="0 0 24 24"><circle cx="18" cy="8" r="3"/><path d="M13 20v-2a4 4 0 00-8 0v2"/><circle cx="9" cy="10" r="4"/></svg>Usuários</div>
+  <div class="mob-more-item" id="mm-perfil" onclick="showV('perfil');closeMobMore()"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Meu Perfil</div>
+</div>
+<nav class="mob-nav" id="mob-nav">
+  <div class="mob-nav-item on" id="mn-dashboard" onclick="showV('dashboard');setMobNav('dashboard')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    <span>Início</span>
+  </div>
+  <div class="mob-nav-item" id="mn-leads" onclick="showV('leads');setMobNav('leads')">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    <div class="dot" id="mn-leads-dot"></div>
+    <span>Leads</span>
+  </div>
+  <div class="mob-nav-item" id="mn-clientes" onclick="showV('clientes');setMobNav('clientes')">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Clientes</span>
+  </div>
+  <div class="mob-nav-item" id="mn-followups" onclick="showV('followups');setMobNav('followups')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <div class="dot" id="mn-fu-dot"></div>
+    <span>Follow-ups</span>
+  </div>
+  <div class="mob-nav-item" id="mn-more" onclick="toggleMobMore()">
+    <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+    <span>Mais</span>
+  </div>
+</nav>
 <div class="tow" id="tow"></div>
 <script>
 // ══ SUPABASE ══
 // IMPORTANTE: Troque SK pela chave "anon public" do seu projeto Supabase
 // Project Settings → API → anon public (começa com eyJ...)
 const SB='https://dujlrpugmsfapfnfxaza.supabase.co';
-const SK='sb_publishable_Z4WZWvTGHK2FUIzQDVhanA_E95izatS'; // ← TROCAR pela chave anon
+let SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1amxycHVnbXNmYXBmbmZ4YXphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2OTc1MzgsImV4cCI6MjA5NzI3MzUzOH0.9_b1hx7Bg8b2vjxiWIbrdFTiVUKMyTmzD7vK6pXOqIQ';
+const USE_SB=SK.startsWith('eyJ');
 
+// ══ LOCAL STORAGE DB ══
+const LS={
+  _get:(t)=>{try{return JSON.parse(localStorage.getItem('crm_db_'+t)||'[]')}catch{return[]}},
+  _save:(t,a)=>localStorage.setItem('crm_db_'+t,JSON.stringify(a)),
+  get:(t)=>Promise.resolve([...(LS._get(t))].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at))),
+  post:(t,b)=>{
+    const a=LS._get(t);
+    const item={...b,id:'id_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),created_at:b.created_at||new Date().toISOString()};
+    a.unshift(item); LS._save(t,a); return Promise.resolve([item]);
+  },
+  patch:(t,id,b)=>{
+    const a=LS._get(t); const i=a.findIndex(x=>x.id===id);
+    if(i<0) return Promise.reject(new Error('Não encontrado'));
+    a[i]={...a[i],...b}; LS._save(t,a); return Promise.resolve([a[i]]);
+  },
+  del:(t,id)=>{LS._save(t,LS._get(t).filter(x=>x.id!==id));return Promise.resolve([]);}
+};
+
+// ══ SUPABASE ══
 async function sbR(method,path,body=null){
   const h={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json'};
   if(method==='POST'||method==='PATCH') h['Prefer']='return=representation';
   const r=await fetch(SB+'/rest/v1'+path,{method,headers:h,body:body?JSON.stringify(body):null});
-  const t=await r.text();
-  if(!r.ok) throw new Error(t);
+  const t=await r.text(); if(!r.ok) throw new Error(t);
   return t?JSON.parse(t):[];
 }
+
+// ══ DB UNIFICADO ══
 const DB={
-  get:(t,q='')=>sbR('GET',`/${t}?order=created_at.desc&${q}`),
-  post:(t,b)=>sbR('POST',`/${t}`,b),
-  patch:(t,id,b)=>sbR('PATCH',`/${t}?id=eq.${encodeURIComponent(id)}`,b),
-  del:(t,id)=>sbR('DELETE',`/${t}?id=eq.${encodeURIComponent(id)}`),
+  get:(t,q='')=>USE_SB?sbR('GET',`/${t}?order=created_at.desc&${q}`):LS.get(t),
+  post:(t,b)=>USE_SB?sbR('POST',`/${t}`,b):LS.post(t,b),
+  patch:(t,id,b)=>USE_SB?sbR('PATCH',`/${t}?id=eq.${encodeURIComponent(id)}`,b):LS.patch(t,id,b),
+  del:(t,id)=>USE_SB?sbR('DELETE',`/${t}?id=eq.${encodeURIComponent(id)}`):LS.del(t,id),
 };
 
 // ══ AUTH (local) ══
@@ -599,8 +736,21 @@ async function initApp(){
     setLdr('Carregando atividades...');try{acts=await DB.get('activities','limit=30')}catch{acts=[];}
     setLdr('Carregando equipe...');   try{people=await DB.get('people')}catch{people=[];}
     setLdr('Carregando serviços...'); try{services=await DB.get('services')}catch{services=[];}
-    hideLdr(); updTB(); updBadges(); renderDash(); popSelects();
-    setInterval(syncAll,12000); toast('Conectado ✓');
+
+    // Migrar dados do localStorage para Supabase se ainda não foram migrados
+    if(USE_SB && !localStorage.getItem('crm_migrated_v1')){
+      setLdr('Migrando dados locais para Supabase...');
+      await migrateLocalToSupabase();
+      // Recarregar após migração
+      try{leads=await DB.get('leads')}catch{}
+      try{followups=await DB.get('followups')}catch{}
+      try{notes=await DB.get('notes')}catch{}
+      try{people=await DB.get('people')}catch{}
+      try{services=await DB.get('services')}catch{}
+    }
+    hideLdr(); updTB(); updBadges(); renderDash(); popSelects(); applyRoleRestrictions();
+    if(USE_SB) setInterval(syncAll,12000);
+    toast(USE_SB?'Conectado ao Supabase ✓':'CRM ativo — dados salvos localmente ✓');
   }catch(e){
     hideLdr(); toast('Aviso: '+e.message,'er');
     updTB(); renderDash();
@@ -1126,30 +1276,74 @@ function exportCSV(type){
 // );
 // ALTER TABLE services DISABLE ROW LEVEL SECURITY;
 
-// ══ USUÁRIOS ══
-const ROLE_NAMES={admin:'Administrador',seller:'Vendedor',collaborator:'Colaborador',investor:'Investidor'};
-const ROLE_BADGE={admin:'b-admin',seller:'b-seller',collaborator:'b-collaborator',investor:'b-investor'};
+// ══ MOBILE NAV ══
+const MOB_MAIN=['dashboard','leads','clientes','followups'];
+function setMobNav(name){
+  document.querySelectorAll('.mob-nav-item').forEach(i=>i.classList.remove('on'));
+  const el=G('mn-'+name)||G('mn-more');
+  if(el)el.classList.add('on');
+}
+function toggleMobMore(){
+  const m=G('mob-more'), o=G('mob-ovl');
+  const isOn=m.classList.toggle('on');
+  o.classList.toggle('on',isOn);
+  // highlight active more-item
+  document.querySelectorAll('.mob-more-item').forEach(i=>i.classList.remove('on'));
+}
+function closeMobMore(){
+  G('mob-more').classList.remove('on');
+  G('mob-ovl').classList.remove('on');
+}
+
+// Override showV to also handle mobile nav
+const _origShowV=showV;
+function showV(name,el){
+  _origShowV(name,el);
+  if(MOB_MAIN.includes(name)){
+    setMobNav(name);
+    closeMobMore();
+  }else{
+    // Keep "Mais" active
+    document.querySelectorAll('.mob-nav-item').forEach(i=>i.classList.remove('on'));
+    const mn=G('mn-more'); if(mn)mn.classList.add('on');
+    // Highlight item in more menu
+    document.querySelectorAll('.mob-more-item').forEach(i=>i.classList.remove('on'));
+    const mm=G('mm-'+name); if(mm)mm.classList.add('on');
+    closeMobMore();
+  }
+}
+
+// ══ ADMIN-ONLY GUARD ══
+function isAdmin(){return CU?.role==='admin';}
 
 function renderUsers(){
-  const isAdmin=CU?.role==='admin';
-  G('users-admin-warn').style.display=isAdmin?'none':'block';
-  G('btn-new-user').style.display=isAdmin?'inline-flex':'none';
+  const admin=isAdmin();
+  // Hide "Usuários" nav item for non-admins
+  const navItem=document.querySelector('.ni[onclick*="usuarios"]');
+  const mobItem=G('mm-usuarios');
+  if(navItem)navItem.style.display=admin?'':'none';
+  if(mobItem)mobItem.style.display=admin?'':'none';
+
+  G('users-admin-warn').style.display=admin?'none':'block';
+  G('btn-new-user').style.display=admin?'inline-flex':'none';
   const accs=getAccs();
   const tb=G('users-body');
   tb.innerHTML=accs.map(u=>{
     const rc={admin:'var(--gold)',seller:'var(--blue)',collaborator:'var(--green)',investor:'var(--purple)'};
     const rbg={admin:'var(--gold-dim)',seller:'var(--bdim)',collaborator:'var(--gdim)',investor:'var(--pdim)'};
     const isMe=u.id===CU.id;
+    const displayEmail=u.id==='master'?decodeMail(u.email):u.email;
     return `<tr>
       <td><div style="display:flex;align-items:center;gap:9px">
         <div class="av" style="background:${rbg[u.role]||'var(--gold-dim)'};color:${rc[u.role]||'var(--gold)'}">${(u.name||'?')[0].toUpperCase()}</div>
-        <div><div class="tdn">${e(u.name||'—')} ${isMe?'<span style="font-size:10px;color:var(--gold);background:var(--gold-dim);padding:1px 6px;border-radius:100px;margin-left:4px">Você</span>':''}</div><div class="tds">${u.id==='master'?'Conta principal':''}</div></div>
+        <div><div class="tdn">${e(u.name||'—')}${isMe?` <span style="font-size:10px;color:var(--gold);background:var(--gold-dim);padding:1px 6px;border-radius:100px">Você</span>`:''}</div>
+        <div class="tds users-hide">${u.id==='master'?'Conta principal':''}</div></div>
       </div></td>
-      <td style="font-size:13px;color:rgba(255,255,255,.65)">${e(u.email)}</td>
+      <td class="users-hide" style="font-size:12px;color:rgba(255,255,255,.6)">${e(displayEmail)}</td>
       <td><span class="badge ${ROLE_BADGE[u.role]||'b-admin'}">${ROLE_NAMES[u.role]||u.role}</span></td>
-      <td style="font-size:11px;color:var(--gray)">${u.created_at?new Date(u.created_at).toLocaleDateString('pt-BR'):'—'}</td>
+      <td class="users-hide" style="font-size:11px;color:var(--gray)">${u.created_at?new Date(u.created_at).toLocaleDateString('pt-BR'):'—'}</td>
       <td><span class="badge b-active">Ativo</span></td>
-      <td>${isAdmin&&!isMe?`<div class="abtns" style="opacity:1">
+      <td>${admin&&!isMe?`<div class="abtns" style="opacity:1">
         <button class="abtn" onclick="openEditUser('${e(u.id)}')" title="Editar"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         <button class="abtn" onclick="openResetPass('${e(u.id)}','${e(u.name)}')" title="Redefinir senha"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></button>
         <button class="abtn del" onclick="delUser('${e(u.id)}')" title="Excluir"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></button>
@@ -1158,72 +1352,48 @@ function renderUsers(){
   }).join('');
 }
 
-let editingUser=null;
-function openUserM(){
-  editingUser=null;
-  G('m-user-t').textContent='Novo Usuário';
-  G('user-id').value='';
-  ['u-name','u-email','u-pass','u-pass2'].forEach(i=>sv(i,''));
-  sv('u-role','seller');
-  openM('m-user');
-}
-function openEditUser(id){
-  const u=getAccs().find(x=>x.id===id); if(!u)return;
-  editingUser=id;
-  G('m-user-t').textContent='Editar Usuário';
-  G('user-id').value=id;
-  sv('u-name',u.name); sv('u-email',u.email); sv('u-role',u.role);
-  sv('u-pass',''); sv('u-pass2','');
-  openM('m-user');
-}
-function saveUser(){
-  const name=G('u-name').value.trim();
-  const email=G('u-email').value.trim().toLowerCase();
-  const pass=G('u-pass').value;
-  const pass2=G('u-pass2').value;
-  const role=G('u-role').value;
-  if(!name){toast('Nome obrigatório','er');return;}
-  if(!email||!email.includes('@')){toast('E-mail inválido','er');return;}
-  let accs=getAccs();
-  if(editingUser){
-    if(pass&&pass!==pass2){toast('As senhas não coincidem','er');return;}
-    if(pass&&pass.length<6){toast('Mínimo 6 caracteres','er');return;}
-    if(accs.find(a=>a.email===email&&a.id!==editingUser)){toast('E-mail já em uso','er');return;}
-    accs=accs.map(a=>a.id===editingUser?{...a,name,email,role,...(pass?{password:hashPass(pass)}:{})}:a);
-    saveAccs(accs); closeM('m-user'); renderUsers(); toast('Usuário atualizado!');
-  }else{
-    if(!pass){toast('Senha obrigatória','er');return;}
-    if(pass!==pass2){toast('As senhas não coincidem','er');return;}
-    if(pass.length<6){toast('Mínimo 6 caracteres','er');return;}
-    if(accs.find(a=>a.email===email)){toast('E-mail já cadastrado','er');return;}
-    accs.push({id:'u_'+Date.now(),email,password:hashPass(pass),name,role,created_at:new Date().toISOString()});
-    saveAccs(accs); closeM('m-user'); renderUsers();
-    toast('Usuário "'+name+'" criado!');
+// Hide users nav on init for non-admins
+function applyRoleRestrictions(){
+  if(!isAdmin()){
+    const navItem=document.querySelector('.ni[onclick*="usuarios"]');
+    const mobItem=G('mm-usuarios');
+    if(navItem)navItem.style.display='none';
+    if(mobItem)mobItem.style.display='none';
   }
-  editingUser=null;
 }
-function openResetPass(id,name){
-  G('reset-id').value=id;
-  G('reset-name').textContent=name;
-  sv('r-pass',''); sv('r-pass2','');
-  openM('m-reset');
+
+// Update updBadges to also update mobile dots
+const _origUpdBadges=updBadges;
+function updBadges(){
+  _origUpdBadges();
+  const hasNewLeads=leads.filter(l=>l.status==='Novo').length>0;
+  const dot1=G('mn-leads-dot'); if(dot1)dot1.classList.toggle('on',hasNewLeads);
+  const today=new Date().toISOString().slice(0,10);
+  const hasOverFU=followups.filter(f=>!f.done&&f.date<=today).length>0;
+  const dot2=G('mn-fu-dot'); if(dot2)dot2.classList.toggle('on',hasOverFU);
 }
-function doResetPass(){
-  const id=G('reset-id').value;
-  const pass=G('r-pass').value;
-  const pass2=G('r-pass2').value;
-  if(!pass||pass!==pass2){toast('As senhas não coincidem','er');return;}
-  if(pass.length<6){toast('Mínimo 6 caracteres','er');return;}
-  let accs=getAccs();
-  accs=accs.map(a=>a.id===id?{...a,password:hashPass(pass)}:a);
-  saveAccs(accs); closeM('m-reset'); toast('Senha redefinida!');
-}
-function delUser(id){
-  if(id===CU.id){toast('Você não pode excluir sua própria conta','er');return;}
-  if(id==='master'){toast('A conta principal não pode ser excluída','er');return;}
-  const u=getAccs().find(x=>x.id===id);
-  if(!confirm('Excluir o usuário "'+( u?.name||'')+'"?'))return;
-  saveAccs(getAccs().filter(a=>a.id!==id)); renderUsers(); toast('Usuário removido');
+const ROLE_NAMES={admin:'Administrador',seller:'Vendedor',collaborator:'Colaborador',investor:'Investidor'};
+const ROLE_BADGE={admin:'b-admin',seller:'b-seller',collaborator:'b-collaborator',investor:'b-investor'};
+
+// ══ MIGRAÇÃO LOCALSTORAGE → SUPABASE ══
+async function migrateLocalToSupabase(){
+  const tables=['leads','followups','notes','activities','people','services'];
+  let count=0;
+  for(const t of tables){
+    const local=LS._get(t);
+    if(!local.length) continue;
+    for(const item of local){
+      try{
+        const {id,...body}=item;
+        await sbR('POST',`/${t}`,body);
+        count++;
+      }catch{}
+    }
+    LS._save(t,[]);
+  }
+  localStorage.setItem('crm_migrated_v1','1');
+  if(count>0) toast(count+' registros migrados para Supabase ✓');
+  else localStorage.setItem('crm_migrated_v1','1');
 }
 
 // ══ INIT ══
