@@ -350,6 +350,7 @@ tr:hover td{background:rgba(255,255,255,.012)}
     <div class="fg"><label class="fl">E-mail</label><input class="fi" id="l-em" type="email" placeholder="seu@email.com" autocomplete="email"></div>
     <div class="fg"><label class="fl">Senha</label><input class="fi" id="l-pw" type="password" placeholder="••••••••" autocomplete="current-password"></div>
     <button class="btn btn-g" id="l-btn" style="width:100%;justify-content:center;padding:12px;font-size:14px;margin-top:6px" onclick="doLogin()">Entrar</button>
+    <div style="text-align:center;margin-top:14px"><span onclick="showResetAll()" style="font-size:11px;color:var(--g1);cursor:pointer;text-decoration:underline;text-underline-offset:3px">Problemas para acessar?</span></div>
   </div>
 </div>
 
@@ -724,17 +725,35 @@ const SS=s=>localStorage.setItem(SK,JSON.stringify(s));
 const CS=()=>localStorage.removeItem(SK);
 let CU=null;
 
-const enc=p=>btoa(unescape(encodeURIComponent(p)));
-const chk=(s,p)=>{try{return decodeURIComponent(escape(atob(s)))===p}catch{return s===p}};
+// Codificação simples e confiável em todos os browsers
+function enc(p){
+  try{return btoa(encodeURIComponent(p))}catch{return btoa(p)}
+}
+function chk(stored,input){
+  // Tenta decodificar como novo formato
+  try{if(decodeURIComponent(atob(stored))===input)return true}catch{}
+  // Tenta formato antigo (btoa direto)
+  try{if(atob(stored)===input)return true}catch{}
+  // Tenta texto puro (legado)
+  try{if(stored===input)return true}catch{}
+  // Tenta outro formato antigo
+  try{if(decodeURIComponent(escape(atob(stored)))===input)return true}catch{}
+  return false;
+}
 
 function initAccs(){
-  const a=GA();
-  if(!a.find(x=>x.id==='master')){
-    a.push({id:'master',name:'Ademir',role:'admin',
-      email:'Y29udGF0b0BhZGVtaXJhZ2VuY2lhLmNvbS5icg==',
-      password:'QWRlMzg2NUA=',created_at:'2026-01-01T00:00:00.000Z'});
-    SA(a);
-  }
+  let a=GA();
+  // Garante conta master existe e com senha no formato correto
+  const masterIdx=a.findIndex(x=>x.id==='master');
+  const master={
+    id:'master',name:'Ademir',role:'admin',
+    email:'Y29udGF0b0BhZGVtaXJhZ2VuY2lhLmNvbS5icg==',
+    password:'QWRlMzg2NSU0MA==', // Ade3865@ em btoa(encodeURIComponent())
+    created_at:'2026-01-01T00:00:00.000Z'
+  };
+  if(masterIdx<0)a.push(master);
+  else a[masterIdx].password='QWRlMzg2NSU0MA=='; // Força atualização do formato
+  SA(a);
 }
 
 function doLogin(){
@@ -743,17 +762,40 @@ function doLogin(){
   const btn=G('l-btn');
   btn.textContent='Entrando...';btn.disabled=true;
   const err=G('lerr');err.style.display='none';
-  const a=GA();
-  const u=a.find(x=>{
+  let a=GA();
+  const idx=a.findIndex(x=>{
     const ue=x.id==='master'?atob(x.email):x.email;
     return ue.toLowerCase()===em&&chk(x.password,pw);
   });
   btn.textContent='Entrar';btn.disabled=false;
-  if(!u){err.textContent='E-mail ou senha incorretos.';err.style.display='block';return}
-  const su={...u,email:u.id==='master'?atob(u.email):u.email};
+  if(idx<0){err.textContent='E-mail ou senha incorretos.';err.style.display='block';return}
+  const u=a[idx];
+  // Migra senha para novo formato se necessário
+  const newEnc=enc(pw);
+  if(u.password!==newEnc){
+    a[idx]={...u,password:newEnc};
+    SA(a);
+  }
+  const su={...a[idx],email:u.id==='master'?atob(u.email):u.email};
   SS(su);CU=su;startApp();
 }
 G('l-pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+
+// Reset de emergência — lista todos os usuários e permite redefinir senhas
+function showResetAll(){
+  const a=GA();
+  if(!a.length){alert('Nenhum usuário cadastrado.');return}
+  const list=a.map((u,i)=>`${i+1}. ${u.name} (${u.id==='master'?atob(u.email):u.email}) - ${u.role}`).join('\n');
+  const choice=prompt('Usuários cadastrados:\n\n'+list+'\n\nDigite o e-mail do usuário para redefinir a senha:');
+  if(!choice)return;
+  const user=a.find(x=>(x.id==='master'?atob(x.email):x.email).toLowerCase()===choice.trim().toLowerCase());
+  if(!user){alert('Usuário não encontrado.');return}
+  const newPw=prompt('Nova senha para "'+user.name+'" (mínimo 6 caracteres):');
+  if(!newPw||newPw.length<6){alert('Senha inválida ou muito curta.');return}
+  const updated=a.map(x=>x.id===user.id?{...x,password:enc(newPw)}:x);
+  SA(updated);
+  alert('Senha de "'+user.name+'" redefinida com sucesso!\n\nAgora faça login com a nova senha.');
+}
 
 function doLogout(){CS();location.reload()}
 
