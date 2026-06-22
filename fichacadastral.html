@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha Online para Contrato | Ademir Agência</title>
+
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #111827;
+      --primary-2: #2563eb;
+      --border: #e5e7eb;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 28%),
+        linear-gradient(180deg, #f9fafb 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    .hero-box,
+    .info-box,
+    form {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box {
+      padding: 34px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #1e40af;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-box p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .info-box {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .info-box h2 {
+      font-size: 20px;
+      margin: 0 0 14px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .step strong {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #111827;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    form {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 18px;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary-2);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .radio-card {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .radio-card label {
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: #fff;
+    }
+
+    .radio-card input {
+      width: auto;
+      transform: scale(1.15);
+    }
+
+    .notice {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .check input {
+      width: auto;
+      margin-top: 3px;
+      transform: scale(1.15);
+    }
+
+    .check label {
+      margin: 0;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      background: linear-gradient(135deg, #111827, #2563eb);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 15px 22px;
+      border-radius: 14px;
+      min-width: 210px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .status {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      display: none;
+      font-weight: 700;
+    }
+
+    .status.success {
+      display: block;
+      color: #166534;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status.error {
+      display: block;
+      color: #991b1b;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .grid,
+      .grid-3,
+      .radio-card {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        width: min(100% - 22px, 1120px);
+        padding: 20px 0;
+      }
+
+      .hero-box,
+      .info-box,
+      form {
+        padding: 22px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-box">
+        <div class="badge">Ficha Online de Contrato</div>
+        <h1>Preencha seus dados para elaboração do contrato</h1>
+        <p>
+          As informações enviadas serão usadas pela Ademir Agência para preparar seu contrato
+          de prestação de serviços de forma rápida e organizada.
+        </p>
+      </div>
+
+      <aside class="info-box">
+        <h2>Como funciona</h2>
+        <div class="steps">
+          <div class="step">
+            <strong>1</strong>
+            <span>Você preenche os dados pessoais, comerciais e do serviço contratado.</span>
+          </div>
+          <div class="step">
+            <strong>2</strong>
+            <span>A ficha é enviada automaticamente para o e-mail da agência.</span>
+          </div>
+          <div class="step">
+            <strong>3</strong>
+            <span>A equipe usa as informações para preparar o contrato.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <form id="contractForm" action="https://api.web3forms.com/submit" method="POST">
+      <!-- Chave Web3Forms -->
+      <input type="hidden" name="access_key" value="3e4ba65a-8492-4fc5-9741-a980ec00414c" />
+
+      <!-- Dados internos do e-mail -->
+      <input type="hidden" name="subject" value="Nova ficha online para contrato - Ademir Agência" />
+      <input type="hidden" name="from_name" value="Ficha Online - Ademir Agência" />
+
+      <!-- Campo anti-spam -->
+      <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Tipo de cliente</h3>
+          <span>Selecione uma opção</span>
+        </div>
+
+        <div class="radio-card">
+          <label>
+            <input type="radio" name="Tipo de cliente" value="Pessoa Física" checked onchange="alterarTipoCliente()" />
+            Pessoa Física
+          </label>
+
+          <label>
+            <input type="radio" name="Tipo de cliente" value="Pessoa Jurídica" onchange="alterarTipoCliente()" />
+            Pessoa Jurídica
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Dados do contratante</h3>
+          <span>Campos principais</span>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="nome">Nome completo / Razão social <span class="required">*</span></label>
+            <input id="nome" type="text" name="Nome completo ou razão social" required placeholder="Digite o nome completo ou razão social" />
+          </div>
+
+          <div>
+            <label id="documentoLabel" for="documento">CPF <span class="required">*</span></label>
+            <input id="documento" type="text" name="CPF ou CNPJ" required placeholder="Digite o CPF" />
+          </div>
+
+          <div>
+            <label id="rgIeLabel" for="rgIe">RG</label>
+            <input id="rgIe" type="text" name="RG ou Inscrição Estadual" placeholder="Digite o RG" />
+          </div>
+
+          <div id="responsavelBox" class="hidden">
+            <label for="responsavel">Responsável legal</label>
+            <input id="responsavel" type="text" name="Responsável legal" placeholder="Nome do responsável pela empresa" />
+          </div>
+
+          <div>
+            <label for="email">E-mail <span class="required">*</span></label>
+            <input id="email" type="email" name="email" required placeholder="exemplo@email.com" />
+          </div>
+
+          <div>
+            <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
+            <input id="telefone" type="tel" name="Telefone ou WhatsApp" required placeholder="(00) 00000-0000" />
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Endereço</h3>
+          <span>Endereço completo para o contrato</span>
+        </div>
+
+        <div class="grid-3">
+          <div>
+            <label for="cep">CEP</label>
+            <input id="cep" type="text" name="CEP" placeholder="00000-000" />
+          </div>
+
+          <div class="full">
+            <label for="endereco">Endereço <span class="required">*</span></label>
+            <input id="endereco" type="text" name="Endereço" required placeholder="Rua, avenida, número e complemento" />
+          </div>
+
+          <div>
+            <label for="bairro">Bairro <span class="required">*</span></label>
+            <input id="bairro" type="text" name="Bairro" required placeholder="Bairro" />
+          </div>
+
+          <div>
+            <label for="cidade">Cidade <span class="required">*</span></label>
+            <input id="cidade" type="text" name="Cidade" required placeholder="Cidade" />
+          </div>
+
+          <div>
+            <label for="estado">Estado <span class="required">*</span></label>
+            <select id="estado" name="Estado" required>
+              <option value="">Selecione</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AP">AP</option>
+              <option value="AM">AM</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MT">MT</option>
+              <option value="MS">MS</option>
+              <option value="MG">MG</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PR">PR</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RS">RS</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="SC">SC</option>
+              <option value="SP">SP</option>
+              <option value="SE">SE</option>
+              <option value="TO">TO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Dados do serviço contratado</h3>
+          <span>Informações comerciais</span>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="servico">Serviço contratado <span class="required">*</span></label>
+            <select id="servico" name="Serviço contratado" required>
+              <option value="">Selecione</option>
+              <option value="Gestão de tráfego pago">Gestão de tráfego pago</option>
+              <option value="Criação de criativos">Criação de criativos</option>
+              <option value="Social media">Social media</option>
+              <option value="Criação de site ou landing page">Criação de site ou landing page</option>
+              <option value="Consultoria de marketing">Consultoria de marketing</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="valor">Valor contratado <span class="required">*</span></label>
+            <input id="valor" type="text" name="Valor contratado" required placeholder="R$ 0,00" />
+          </div>
+
+          <div>
+            <label for="pagamento">Forma de pagamento</label>
+            <select id="pagamento" name="Forma de pagamento">
+              <option value="">Selecione</option>
+              <option value="Pix">Pix</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Boleto">Boleto</option>
+              <option value="Transferência bancária">Transferência bancária</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="inicio">Data de início</label>
+            <input id="inicio" type="date" name="Data de início" />
+          </div>
+
+          <div>
+            <label for="vigencia">Vigência do contrato</label>
+            <select id="vigencia" name="Vigência do contrato">
+              <option value="">Selecione</option>
+              <option value="Mensal recorrente">Mensal recorrente</option>
+              <option value="3 meses">3 meses</option>
+              <option value="6 meses">6 meses</option>
+              <option value="12 meses">12 meses</option>
+              <option value="Projeto único">Projeto único</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="investimentoAds">Investimento mensal em anúncios</label>
+            <input id="investimentoAds" type="text" name="Investimento mensal em anúncios" placeholder="R$ 0,00" />
+          </div>
+
+          <div class="full">
+            <label for="objetivo">Objetivo principal do contrato <span class="required">*</span></label>
+            <textarea id="objetivo" name="Objetivo principal do contrato" required placeholder="Exemplo: gerar leads, vender mais, aumentar reconhecimento da marca, captar pacientes, captar clientes etc."></textarea>
+          </div>
+
+          <div class="full">
+            <label for="observacoes">Observações adicionais</label>
+            <textarea id="observacoes" name="Observações adicionais" placeholder="Coloque aqui alguma informação importante para o contrato."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Autorização e LGPD</h3>
+          <span>Obrigatório</span>
+        </div>
+
+        <div class="notice">
+          Ao enviar esta ficha, você declara que as informações fornecidas são verdadeiras
+          e autoriza a Ademir Agência a utilizar estes dados exclusivamente para elaboração
+          do contrato, contato comercial e prestação dos serviços contratados.
+        </div>
+
+        <div class="check">
+          <input id="lgpd" type="checkbox" name="Autorização LGPD" value="Aceito" required />
+          <label for="lgpd">
+            Li e autorizo o uso dos meus dados para elaboração do contrato e contato da Ademir Agência.
+            <span class="required">*</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="submitButton" type="submit">Enviar ficha para contrato</button>
+        <span class="small">
+          Após o envio, a equipe receberá a ficha por e-mail.
+        </span>
+      </div>
+
+      <div id="formStatus" class="status"></div>
+    </form>
+
+    <footer>
+      © Ademir Agência — Ficha online para elaboração de contrato.
+    </footer>
+  </main>
+
+  <script>
+    const form = document.getElementById("contractForm");
+    const statusBox = document.getElementById("formStatus");
+    const submitButton = document.getElementById("submitButton");
+
+    function apenasNumeros(valor) {
+      return valor.replace(/\D/g, "");
+    }
+
+    function mascaraCPF(valor) {
+      valor = apenasNumeros(valor).slice(0, 11);
+      valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+      valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+      valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+      return valor;
+    }
+
+    function mascaraCNPJ(valor) {
+      valor = apenasNumeros(valor).slice(0, 14);
+      valor = valor.replace(/^(\d{2})(\d)/, "$1.$2");
+      valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+      valor = valor.replace(/\.(\d{3})(\d)/, ".$1/$2");
+      valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+      return valor;
+    }
+
+    function mascaraTelefone(valor) {
+      valor = apenasNumeros(valor).slice(0, 11);
+
+      if (valor.length <= 10) {
+        valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+        valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+      } else {
+        valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+      }
+
+      return valor;
+    }
+
+    function mascaraCEP(valor) {
+      valor = apenasNumeros(valor).slice(0, 8);
+      valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+      return valor;
+    }
+
+    function mascaraMoeda(valor) {
+      valor = apenasNumeros(valor);
+
+      if (!valor) {
+        return "";
+      }
+
+      const numero = (parseInt(valor, 10) / 100).toFixed(2);
+      return Number(numero).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function tipoSelecionado() {
+      const selecionado = document.querySelector('input[name="Tipo de cliente"]:checked');
+      return selecionado ? selecionado.value : "Pessoa Física";
+    }
+
+    function alterarTipoCliente() {
+      const tipo = tipoSelecionado();
+      const documento = document.getElementById("documento");
+      const documentoLabel = document.getElementById("documentoLabel");
+      const rgIeLabel = document.getElementById("rgIeLabel");
+      const rgIe = document.getElementById("rgIe");
+      const responsavelBox = document.getElementById("responsavelBox");
+
+      documento.value = "";
+
+      if (tipo === "Pessoa Jurídica") {
+        documentoLabel.innerHTML = 'CNPJ <span class="required">*</span>';
+        documento.placeholder = "Digite o CNPJ";
+        rgIeLabel.innerText = "Inscrição Estadual";
+        rgIe.placeholder = "Digite a inscrição estadual, se houver";
+        responsavelBox.classList.remove("hidden");
+      } else {
+        documentoLabel.innerHTML = 'CPF <span class="required">*</span>';
+        documento.placeholder = "Digite o CPF";
+        rgIeLabel.innerText = "RG";
+        rgIe.placeholder = "Digite o RG";
+        responsavelBox.classList.add("hidden");
+      }
+    }
+
+    document.getElementById("documento").addEventListener("input", function () {
+      this.value = tipoSelecionado() === "Pessoa Jurídica"
+        ? mascaraCNPJ(this.value)
+        : mascaraCPF(this.value);
+    });
+
+    document.getElementById("telefone").addEventListener("input", function () {
+      this.value = mascaraTelefone(this.value);
+    });
+
+    document.getElementById("cep").addEventListener("input", function () {
+      this.value = mascaraCEP(this.value);
+    });
+
+    document.getElementById("valor").addEventListener("input", function () {
+      this.value = mascaraMoeda(this.value);
+    });
+
+    document.getElementById("investimentoAds").addEventListener("input", function () {
+      this.value = mascaraMoeda(this.value);
+    });
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      statusBox.className = "status";
+      statusBox.innerText = "";
+      submitButton.disabled = true;
+      submitButton.innerText = "Enviando...";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          statusBox.className = "status success";
+          statusBox.innerText = "Ficha enviada com sucesso. Em breve a equipe entrará em contato.";
+          form.reset();
+          alterarTipoCliente();
+        } else {
+          throw new Error("Erro no envio");
+        }
+      } catch (error) {
+        statusBox.className = "status error";
+        statusBox.innerText = "Não foi possível enviar a ficha agora. Verifique sua conexão e tente novamente.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerText = "Enviar ficha para contrato";
+      }
+    });
+
+    alterarTipoCliente();
+  </script>
+</body>
+</html>
