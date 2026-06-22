@@ -247,6 +247,25 @@
       font-size: 14px;
     }
 
+    .conditional-group {
+      grid-column: 1 / -1;
+      background: #f9fafb;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .conditional-group > label {
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .conditional-group .grid,
+    .conditional-group .grid-3 {
+      margin-top: 10px;
+    }
+
+
     .check {
       display: flex;
       align-items: flex-start;
@@ -564,6 +583,140 @@
           </div>
 
           <div>
+            <label for="condicaoPagamento">Condição de pagamento <span class="required">*</span></label>
+            <select id="condicaoPagamento" name="Condição de pagamento" required>
+              <option value="">Selecione</option>
+              <option value="À vista">À vista</option>
+              <option value="Entrada + parcelas">Entrada + parcelas</option>
+              <option value="Parcelado sem entrada">Parcelado sem entrada</option>
+              <option value="Mensal recorrente">Mensal recorrente</option>
+              <option value="Comissionado">Comissionado</option>
+              <option value="Fixo + comissão">Fixo + comissão</option>
+              <option value="Outro / personalizado">Outro / personalizado</option>
+            </select>
+          </div>
+
+          <div id="parcelamentoBox" class="conditional-group hidden">
+            <label>Detalhes de entrada e parcelamento</label>
+            <div class="grid-3">
+              <div>
+                <label for="valorEntrada">Valor da entrada</label>
+                <input id="valorEntrada" type="text" name="Valor da entrada" placeholder="R$ 0,00" />
+              </div>
+
+              <div>
+                <label for="quantidadeParcelas">Quantidade de parcelas</label>
+                <select id="quantidadeParcelas" name="Quantidade de parcelas">
+                  <option value="">Selecione</option>
+                  <option value="1x">1x</option>
+                  <option value="2x">2x</option>
+                  <option value="3x">3x</option>
+                  <option value="4x">4x</option>
+                  <option value="5x">5x</option>
+                  <option value="6x">6x</option>
+                  <option value="7x">7x</option>
+                  <option value="8x">8x</option>
+                  <option value="9x">9x</option>
+                  <option value="10x">10x</option>
+                  <option value="11x">11x</option>
+                  <option value="12x">12x</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="valorParcela">Valor de cada parcela</label>
+                <input id="valorParcela" type="text" name="Valor de cada parcela" placeholder="R$ 0,00" />
+              </div>
+
+              <div>
+                <label for="vencimentoPrimeiroPagamento">Data da entrada / 1º pagamento</label>
+                <input id="vencimentoPrimeiroPagamento" type="date" name="Data da entrada ou primeiro pagamento" />
+              </div>
+
+              <div>
+                <label for="diaVencimento">Dia de vencimento recorrente</label>
+                <select id="diaVencimento" name="Dia de vencimento recorrente">
+                  <option value="">Selecione</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div>
+
+              <div class="full">
+                <label for="observacaoParcelamento">Observações sobre pagamento</label>
+                <textarea id="observacaoParcelamento" name="Observações sobre pagamento" placeholder="Exemplo: entrada no Pix e saldo em 2x no boleto; primeira parcela na assinatura do contrato etc."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div id="comissaoBox" class="conditional-group hidden">
+            <label>Detalhes de comissão</label>
+            <div class="grid-3">
+              <div>
+                <label for="percentualComissao">Porcentagem de comissão</label>
+                <input id="percentualComissao" type="text" name="Porcentagem de comissão" inputmode="decimal" placeholder="Exemplo: 10%" />
+              </div>
+
+              <div>
+                <label for="baseComissao">Base de cálculo</label>
+                <select id="baseComissao" name="Base de cálculo da comissão">
+                  <option value="">Selecione</option>
+                  <option value="Sobre faturamento bruto">Sobre faturamento bruto</option>
+                  <option value="Sobre lucro líquido">Sobre lucro líquido</option>
+                  <option value="Sobre vendas geradas">Sobre vendas geradas</option>
+                  <option value="Sobre leads fechados">Sobre leads fechados</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="momentoComissao">Quando a comissão será paga?</label>
+                <select id="momentoComissao" name="Momento de pagamento da comissão">
+                  <option value="">Selecione</option>
+                  <option value="No fechamento da venda">No fechamento da venda</option>
+                  <option value="Após o cliente pagar">Após o cliente pagar</option>
+                  <option value="Mensalmente">Mensalmente</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+
+              <div class="full">
+                <label for="observacaoComissao">Observações sobre comissão</label>
+                <textarea id="observacaoComissao" name="Observações sobre comissão" placeholder="Exemplo: 10% sobre vendas confirmadas, pagos até o dia 10 do mês seguinte."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div>
             <label for="inicio">Data de início</label>
             <input id="inicio" type="date" name="Data de início" />
           </div>
@@ -723,6 +876,37 @@
       }
     }
 
+    function alterarCondicaoPagamento() {
+      const condicao = document.getElementById("condicaoPagamento").value;
+      const parcelamentoBox = document.getElementById("parcelamentoBox");
+      const comissaoBox = document.getElementById("comissaoBox");
+      const valorEntrada = document.getElementById("valorEntrada");
+      const quantidadeParcelas = document.getElementById("quantidadeParcelas");
+      const valorParcela = document.getElementById("valorParcela");
+      const percentualComissao = document.getElementById("percentualComissao");
+      const baseComissao = document.getElementById("baseComissao");
+
+      const mostrarParcelamento = ["Entrada + parcelas", "Parcelado sem entrada", "Mensal recorrente", "Outro / personalizado"].includes(condicao);
+      const mostrarComissao = ["Comissionado", "Fixo + comissão", "Outro / personalizado"].includes(condicao);
+
+      parcelamentoBox.classList.toggle("hidden", !mostrarParcelamento);
+      comissaoBox.classList.toggle("hidden", !mostrarComissao);
+
+      valorEntrada.required = condicao === "Entrada + parcelas";
+      quantidadeParcelas.required = condicao === "Entrada + parcelas" || condicao === "Parcelado sem entrada";
+      valorParcela.required = condicao === "Entrada + parcelas" || condicao === "Parcelado sem entrada";
+      percentualComissao.required = condicao === "Comissionado" || condicao === "Fixo + comissão";
+      baseComissao.required = condicao === "Comissionado" || condicao === "Fixo + comissão";
+    }
+
+    function normalizarPercentual(valor) {
+      valor = valor.replace(/[^0-9,.]/g, "").replace(".", ",");
+      if (!valor) {
+        return "";
+      }
+      return valor.endsWith("%") ? valor : valor + "%";
+    }
+
     document.getElementById("documento").addEventListener("input", function () {
       this.value = tipoSelecionado() === "Pessoa Jurídica"
         ? mascaraCNPJ(this.value)
@@ -740,6 +924,21 @@
     document.getElementById("valor").addEventListener("input", function () {
       this.value = mascaraMoeda(this.value);
     });
+
+    document.getElementById("condicaoPagamento").addEventListener("change", alterarCondicaoPagamento);
+
+    document.getElementById("valorEntrada").addEventListener("input", function () {
+      this.value = mascaraMoeda(this.value);
+    });
+
+    document.getElementById("valorParcela").addEventListener("input", function () {
+      this.value = mascaraMoeda(this.value);
+    });
+
+    document.getElementById("percentualComissao").addEventListener("blur", function () {
+      this.value = normalizarPercentual(this.value);
+    });
+
 
     document.getElementById("investimentoAds").addEventListener("input", function () {
       this.value = mascaraMoeda(this.value);
@@ -781,6 +980,7 @@
     });
 
     alterarTipoCliente();
+    alterarCondicaoPagamento();
   </script>
 </body>
 </html>
