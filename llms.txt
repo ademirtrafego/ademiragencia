@@ -1,0 +1,46 @@
+# Ademir Agência
+
+Site oficial: https://www.ademiragencia.com.br/
+
+Ademir Agência é uma agência de marketing digital em Campo Grande, Mato Grosso do Sul, Brasil. A empresa atende negócios que querem estruturar presença digital com estratégia, tráfego pago, social media, branding, criação de sites, design criativo e diagnóstico de performance.
+
+## Informações principais
+
+- Nome: Ademir Agência
+- Localização: Campo Grande, MS, Brasil
+- Idioma principal: português do Brasil
+- Área de atuação: marketing digital, tráfego pago, social media, branding, criação de sites, design criativo e estratégia digital
+- Atendimento: Campo Grande, Mato Grosso do Sul e empresas de outras regiões do Brasil
+- Site: https://www.ademiragencia.com.br/
+- WhatsApp: +55 67 98108-2158
+- E-mail: contato@ademiragencia.com.br
+- Instagram: https://instagram.com/ademiragencia
+
+## Serviços
+
+- Tráfego pago em Google Ads e Meta Ads
+- Gestão e planejamento de social media
+- Branding e posicionamento de marca
+- Criação de sites institucionais e páginas de conversão
+- Design criativo para campanhas e presença digital
+- Diagnóstico de marketing digital e plano de ação inicial
+
+## Diferenciais
+
+- Atendimento direto e próximo
+- Método claro para diagnóstico, planejamento e execução
+- Comunicação premium sem prometer resultados irreais
+- Propostas formais sob solicitação
+- CNPJ não é exibido publicamente no site
+- A empresa é nova e não usa cases inventados
+
+## Recursos para crawlers
+
+- Página principal: https://www.ademiragencia.com.br/
+- Sitemap: https://www.ademiragencia.com.br/sitemap.xml
+- Robots.txt: https://www.ademiragencia.com.br/robots.txt
+- Arquivo para LLMs: https://www.ademiragencia.com.br/llms.txt
+
+## Resumo curto
+
+Ademir Agência é uma agência de marketing digital em Campo Grande MS que ajuda empresas a melhorar presença digital com estratégia, tráfego pago, social media, branding, criação de sites e design criativo.
