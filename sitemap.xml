@@ -5,51 +5,29 @@
 
   <url>
     <loc>https://www.ademiragencia.com.br/</loc>
-    <lastmod>2026-06-16</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.ademiragencia.com.br/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ademiragencia.com.br/"/>
+
     <image:image>
-      <image:loc>https://res.cloudinary.com/dmdaiwkyl/image/upload/v1781641114/ChatGPT_Image_16_de_jun._de_2026_16_18_24_skbudu.png</image:loc>
-      <image:title>Ademir Agência — Marketing Digital Campo Grande MS</image:title>
-      <image:caption>Agência de marketing digital especializada em tráfego pago, social media, branding e criação de sites em Campo Grande MS.</image:caption>
+      <image:loc>https://www.ademiragencia.com.br/ademir-agencia-assets/hero-strategy.png</image:loc>
+      <image:title>Ademir Agência - Marketing Digital em Campo Grande MS</image:title>
+      <image:caption>Agência de marketing digital em Campo Grande MS com método, diagnóstico e estratégia para presença digital.</image:caption>
     </image:image>
-  </url>
 
-  <url>
-    <loc>https://www.ademiragencia.com.br/#servicos</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+    <image:image>
+      <image:loc>https://www.ademiragencia.com.br/ademir-agencia-assets/creative-services.png</image:loc>
+      <image:title>Serviços de marketing digital e criação estratégica</image:title>
+      <image:caption>Tráfego pago, social media, branding, criação de sites e design criativo para empresas.</image:caption>
+    </image:image>
 
-  <url>
-    <loc>https://www.ademiragencia.com.br/#resultados</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ademiragencia.com.br/#diferenciais</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ademiragencia.com.br/#sobre</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ademiragencia.com.br/#contato</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.ademiragencia.com.br/ademir-agencia-assets/performance-results.png</image:loc>
+      <image:title>Método de diagnóstico e performance digital</image:title>
+      <image:caption>Planejamento, análise de canais, relatório e otimização para marketing digital.</image:caption>
+    </image:image>
   </url>
 
 </urlset>
