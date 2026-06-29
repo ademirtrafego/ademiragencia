@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifesto — Ademir Agência</title>
+<meta name="description" content="Não vendemos marketing. Construímos crescimento. O manifesto da Ademir Agência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0A0A0A;
+  --ink2: #0f0f0f;
+  --gold: #F5A623;
+  --gold2: #FFB84D;
+  --white: #FFFFFF;
+  --dim: rgba(255,255,255,0.45);
+  --dimmer: rgba(255,255,255,0.18);
+  --rule: rgba(255,255,255,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── SCROLL PROGRESS ── */
+#prog {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px;
+  z-index: 999; background: transparent; pointer-events: none;
+}
+#prog i {
+  display: block; height: 100%; width: 0%;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(245,166,35,0.8);
+  transition: width 0.08s linear;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── BACK LINK ── */
+.back {
+  position: fixed; top: 28px; left: 32px; z-index: 100;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--dimmer); text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--gold); }
+.back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── LOGO ── */
+.top-logo {
+  position: fixed; top: 22px; right: 32px; z-index: 100;
+}
+.top-logo img { height: 34px; filter: drop-shadow(0 0 10px rgba(245,166,35,0.3)); }
+
+/* ── COVER ── */
+.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 100px 32px;
+}
+
+.cover-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(245,166,35,0.1) 0%, transparent 65%),
+    var(--ink);
+}
+
+/* Rotating ring decoration */
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(245,166,35,0.1);
+  animation: spin linear infinite;
+}
+.ring-1 { width: 600px; height: 600px; animation-duration: 60s; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.ring-2 { width: 900px; height: 900px; animation-duration: 90s; animation-direction: reverse; top: 50%; left: 50%; transform: translate(-50%,-50%); border-style: dashed; border-width: 1px; border-color: rgba(245,166,35,0.05); }
+@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+.cover-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 32px; position: relative; z-index: 1;
+  opacity: 0; animation: riseIn 1s 0.2s both;
+}
+
+.cover-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(52px, 10vw, 130px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  position: relative; z-index: 1;
+  opacity: 0; animation: riseIn 1s 0.4s both;
+}
+.cover-title span { color: var(--gold); display: block; }
+
+.cover-rule {
+  width: 1px; height: 80px;
+  background: linear-gradient(transparent, var(--gold), transparent);
+  margin: 48px auto 0;
+  position: relative; z-index: 1;
+  opacity: 0; animation: riseIn 1s 0.8s both;
+}
+
+.cover-scroll {
+  margin-top: 16px; font-size: 11px; letter-spacing: 3px; color: var(--dimmer);
+  text-transform: uppercase; position: relative; z-index: 1;
+  opacity: 0; animation: riseIn 1s 1s both;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MANIFESTO BODY ── */
+.manifesto {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 32px 200px;
+  position: relative; z-index: 1;
+}
+
+/* ── PARAGRAPH STYLES ── */
+.m-chapter {
+  padding: 100px 0 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 100px;
+}
+.m-chapter:first-child { margin-top: 0; border-top: none; padding-top: 120px; }
+
+.m-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 48px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.m-label.vis { opacity: 1; transform: translateY(0); }
+
+/* BIG statement lines */
+.m-big {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 5.5vw, 64px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 56px;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+.m-big.vis { opacity: 1; transform: translateY(0); }
+.m-big .g { color: var(--gold); }
+
+/* Body paragraphs */
+.m-p {
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.8;
+  color: var(--dim);
+  margin-bottom: 28px;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.m-p.vis { opacity: 1; transform: translateY(0); }
+.m-p strong { color: var(--white); font-weight: 600; }
+
+/* Antithesis — contrasting lines */
+.m-contrast {
+  margin: 64px 0;
+  display: flex; flex-direction: column; gap: 0;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+.m-contrast.vis { opacity: 1; transform: translateY(0); }
+
+.m-contrast-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule);
+  padding: 24px 0;
+}
+.m-contrast-pair:last-child { border-bottom: none; }
+
+.m-contrast-no {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255,255,255,0.25);
+  line-height: 1.4;
+  padding-right: 24px;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.12);
+}
+
+.m-contrast-yes {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--white);
+  font-weight: 600;
+  line-height: 1.4;
+  padding-left: 24px;
+  border-left: 2px solid var(--gold);
+}
+
+/* Culture values */
+.m-values {
+  margin: 56px 0;
+  display: flex; flex-direction: column; gap: 0;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+.m-values.vis { opacity: 1; transform: translateY(0); }
+
+.m-value {
+  display: flex; align-items: center; gap: 20px;
+  padding: 22px 0; border-bottom: 1px solid var(--rule);
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800; letter-spacing: -0.02em;
+}
+.m-value:first-child { padding-top: 0; }
+.m-value:last-child { border-bottom: none; }
+.m-value-num {
+  font-size: 11px; font-weight: 500; color: var(--gold);
+  letter-spacing: 2px; min-width: 32px;
+}
+
+/* Centered impact quote */
+.m-quote {
+  text-align: center; padding: 80px 0;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.9s, transform 0.9s;
+}
+.m-quote.vis { opacity: 1; transform: translateY(0); }
+.m-quote-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 46px);
+  font-weight: 900; line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.m-quote-text .g { color: var(--gold); }
+.m-quote-line {
+  width: 48px; height: 2px; background: var(--gold);
+  margin: 32px auto 0;
+}
+
+/* ── CLOSING ── */
+.m-close {
+  margin-top: 120px; padding-top: 80px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 1s, transform 1s;
+}
+.m-close.vis { opacity: 1; transform: translateY(0); }
+
+.m-close-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(44px, 8vw, 96px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 1; margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--white) 0%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.m-close-tagline {
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--gold); font-weight: 600;
+  letter-spacing: -0.01em; margin-bottom: 48px;
+}
+
+.m-close-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--gold); color: var(--ink);
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px;
+  padding: 18px 40px; border-radius: 100px; text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 0 60px rgba(245,166,35,0.3);
+}
+.m-close-cta:hover {
+  background: var(--gold2);
+  box-shadow: 0 0 90px rgba(245,166,35,0.5);
+  transform: translateY(-2px);
+}
+.m-close-cta svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .manifesto { padding: 0 20px 120px; }
+  .m-chapter { padding-top: 72px; margin-top: 72px; }
+  .m-chapter:first-child { padding-top: 80px; }
+  .m-contrast-pair { grid-template-columns: 1fr; gap: 12px; }
+  .m-contrast-no { padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+  .m-contrast-yes { padding-left: 16px; }
+  .back { top: 16px; left: 16px; }
+  .top-logo { top: 14px; right: 16px; }
+  .top-logo img { height: 28px; }
+  .ring-1, .ring-2 { width: 320px; height: 320px; }
+  .ring-2 { width: 500px; height: 500px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="prog"><i id="progBar"></i></div>
+
+<a href="/" class="back">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  Voltar ao site
+</a>
+
+<div class="top-logo">
+  <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1781641114/ChatGPT_Image_16_de_jun._de_2026_16_18_24_skbudu.png" alt="Ademir Agência">
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+
+  <div class="cover-eyebrow">Manifesto da Marca · Ademir Agência</div>
+  <div class="cover-title">
+    Não vendemos<br>
+    <span>marketing.</span>
+  </div>
+  <div class="cover-rule"></div>
+  <div class="cover-scroll">Role para ler</div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto">
+
+  <!-- CAPÍTULO 1 -->
+  <div class="m-chapter">
+    <div class="m-label">Por que existimos</div>
+    <div class="m-big">
+      Nós existimos por um motivo:<br>
+      <span class="g">Fazer empresas crescerem.</span>
+    </div>
+    <p class="m-p">
+      Não acreditamos que marketing seja sobre curtidas.<br>
+      Não acreditamos que sucesso seja medido por visualizações.<br>
+      Não acreditamos que impulsionar publicações seja estratégia.
+    </p>
+    <div class="m-big" style="font-size:clamp(40px,7vw,88px);margin-top:16px;">
+      Acreditamos em <span class="g">resultados.</span>
+    </div>
+  </div>
+
+  <!-- CAPÍTULO 2 -->
+  <div class="m-chapter">
+    <div class="m-label">Nossa escolha</div>
+    <p class="m-p">
+      Vivemos em um mercado onde muitos prometem alcance, mas poucos entregam crescimento.
+    </p>
+    <p class="m-p">
+      Nós escolhemos o caminho mais difícil: o da <strong>estratégia</strong>, da <strong>análise</strong>, da <strong>execução</strong> e da <strong>melhoria contínua</strong>.
+    </p>
+    <div class="m-values">
+      <div class="m-value"><span class="m-value-num">—</span>Cada real investido precisa ter um propósito.</div>
+      <div class="m-value"><span class="m-value-num">—</span>Cada campanha precisa ter uma meta.</div>
+      <div class="m-value"><span class="m-value-num">—</span>Cada decisão precisa ser baseada em dados.</div>
+    </div>
+  </div>
+
+  <!-- CAPÍTULO 3 - ANTÍTESE -->
+  <div class="m-chapter">
+    <div class="m-label">O que somos de verdade</div>
+    <div class="m-big">
+      Não somos uma agência que<br>apenas <span class="g">publica conteúdos.</span>
+    </div>
+    <div class="m-contrast">
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Publica conteúdo</div>
+        <div class="m-contrast-yes">Constrói posicionamento</div>
+      </div>
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Gera curtidas</div>
+        <div class="m-contrast-yes">Gera autoridade</div>
+      </div>
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Caça seguidores</div>
+        <div class="m-contrast-yes">Cria demanda real</div>
+      </div>
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Mede visualizações</div>
+        <div class="m-contrast-yes">Transforma atenção em faturamento</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPÍTULO 4 -->
+  <div class="m-chapter">
+    <div class="m-label">Por que empresas crescem</div>
+    <div class="m-big">
+      Empresas não crescem<br><span class="g">por acaso.</span>
+    </div>
+    <p class="m-p">
+      Elas crescem quando existe <strong>direção</strong>.<br>
+      Quando existe <strong>processo</strong>.<br>
+      Quando existe <strong>estratégia</strong>.
+    </p>
+  </div>
+
+  <!-- CAPÍTULO 5 - HUMANO -->
+  <div class="m-chapter">
+    <div class="m-label">Por trás de cada negócio</div>
+    <div class="m-big">
+      Por trás de cada negócio existe uma <span class="g">família.</span>
+    </div>
+    <p class="m-p">
+      Um sonho. Anos de dedicação. Alguém que decidiu não desistir.
+    </p>
+    <p class="m-p">
+      É por isso que tratamos cada projeto como se fosse nosso.
+    </p>
+    <p class="m-p">
+      Celebramos resultados, mas <strong>nunca nos acomodamos</strong>.
+    </p>
+
+    <div class="m-quote">
+      <div class="m-quote-text">
+        O mercado muda.<br>
+        As plataformas mudam.<br>
+        O comportamento das pessoas muda.<br>
+        <span class="g">E nós evoluímos.</span>
+      </div>
+      <div class="m-quote-line"></div>
+    </div>
+  </div>
+
+  <!-- CAPÍTULO 6 - CULTURA -->
+  <div class="m-chapter">
+    <div class="m-label">Nossa cultura</div>
+    <div class="m-big">Nossa cultura é <span class="g">simples.</span></div>
+    <div class="m-values">
+      <div class="m-value"><span class="m-value-num">01</span>Pensar grande.</div>
+      <div class="m-value"><span class="m-value-num">02</span>Executar com excelência.</div>
+      <div class="m-value"><span class="m-value-num">03</span>Aprender constantemente.</div>
+      <div class="m-value"><span class="m-value-num">04</span>Nunca aceitar o comum.</div>
+    </div>
+    <p class="m-p" style="margin-top:48px;">
+      Não buscamos ser a <strong>maior agência</strong>.<br>
+      Buscamos ser a agência que <strong>mais gera impacto</strong> na vida dos nossos clientes.
+    </p>
+  </div>
+
+  <!-- CAPÍTULO 7 - IMPACTO REAL -->
+  <div class="m-chapter">
+    <div class="m-label">O verdadeiro poder do marketing</div>
+    <p class="m-p">Porque quando uma empresa cresce...</p>
+    <div class="m-values">
+      <div class="m-value" style="font-size:clamp(18px,2.8vw,26px);"><span class="m-value-num">—</span>Empregos são criados.</div>
+      <div class="m-value" style="font-size:clamp(18px,2.8vw,26px);"><span class="m-value-num">—</span>Famílias prosperam.</div>
+      <div class="m-value" style="font-size:clamp(18px,2.8vw,26px);"><span class="m-value-num">—</span>Sonhos deixam de ser planos e se tornam realidade.</div>
+    </div>
+  </div>
+
+  <!-- CAPÍTULO 8 - ANTÍTESE FINAL -->
+  <div class="m-chapter">
+    <div class="m-label">Nosso compromisso</div>
+    <div class="m-contrast">
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Vender anúncios</div>
+        <div class="m-contrast-yes">Construir negócios</div>
+      </div>
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Comprar cliques</div>
+        <div class="m-contrast-yes">Conquistar confiança</div>
+      </div>
+      <div class="m-contrast-pair">
+        <div class="m-contrast-no">Gerar vaidade</div>
+        <div class="m-contrast-yes">Gerar faturamento</div>
+      </div>
+    </div>
+
+    <div class="m-big" style="margin-top:48px;">
+      Esse é nosso compromisso.<br>
+      Essa é nossa identidade.<br>
+      <span class="g">Essa é nossa marca.</span>
+    </div>
+  </div>
+
+  <!-- FECHAMENTO -->
+  <div class="m-close">
+    <div class="m-close-name">ADEMIR<br>AGÊNCIA</div>
+    <div class="m-close-tagline">Não vendemos marketing.<br>Construímos crescimento.</div>
+    <a href="https://wa.me/5567981082158?text=Olá! Li o manifesto da Ademir Agência e quero conversar sobre como crescer meu negócio." target="_blank" class="m-close-cta">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Crescer com a Ademir
+    </a>
+  </div>
+
+</div>
+
+<script>
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const st = document.documentElement.scrollTop;
+  const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('progBar').style.width = (sh > 0 ? st/sh*100 : 0) + '%';
+});
+
+// ── REVEAL ON SCROLL ──
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('vis');
+      // Stagger children with same class
+      const children = e.target.querySelectorAll('.m-value, .m-contrast-pair');
+      children.forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.07) + 's';
+      });
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll(
+  '.m-label, .m-big, .m-p, .m-contrast, .m-values, .m-quote, .m-close'
+).forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
